@@ -123,6 +123,59 @@
             background-size: 200% 100%;
             animation: gradient-shift 4s ease infinite;
         }
+
+        /* 3D Phone Hero */
+        .hero-scene { perspective: 1200px; }
+        .phone-frame {
+            width: 180px; height: 370px;
+            background: #1a1a2e;
+            border-radius: 2.2rem;
+            border: 3px solid #2a2a40;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.25), inset 0 0 0 2px rgba(255,255,255,0.05);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .phone-frame::before {
+            content: '';
+            position: absolute;
+            top: 8px; left: 50%; transform: translateX(-50%);
+            width: 60px; height: 6px;
+            background: #2a2a40;
+            border-radius: 3px;
+            z-index: 20;
+        }
+        .phone-screen {
+            position: absolute;
+            inset: 4px;
+            border-radius: 2rem;
+            overflow: hidden;
+        }
+        .phone-camera {
+            transform: rotateY(18deg) rotateX(3deg) translateZ(0);
+        }
+        .phone-viewer {
+            transform: rotateY(-18deg) rotateX(3deg) translateZ(0);
+        }
+        .hero-scene:hover .phone-camera { transform: rotateY(8deg) rotateX(1deg) scale(1.03); }
+        .hero-scene:hover .phone-viewer { transform: rotateY(-8deg) rotateX(1deg) scale(1.03); }
+        @keyframes signal-travel {
+            0% { left: 15%; opacity: 0; transform: scale(0.5); }
+            20% { opacity: 1; transform: scale(1); }
+            80% { opacity: 1; transform: scale(1); }
+            100% { left: 78%; opacity: 0; transform: scale(0.5); }
+        }
+        @keyframes paw-bounce {
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-6px) rotate(5deg); }
+        }
+        @media (max-width: 640px) {
+            .phone-frame { width: 140px; height: 290px; border-radius: 1.8rem; }
+            .phone-screen { border-radius: 1.6rem; }
+            .phone-frame::before { width: 45px; height: 5px; }
+            .phone-camera { transform: rotateY(12deg) rotateX(2deg); }
+            .phone-viewer { transform: rotateY(-12deg) rotateX(2deg); }
+        }
     </style>
 </head>
 
@@ -188,89 +241,122 @@
             </a>
         </div>
 
-        <!-- Hero Visual: App Preview Mockup -->
-        <div data-aos="zoom-in-up" data-aos-duration="1200" data-aos-delay="500" class="relative z-10 mt-20 w-full max-w-5xl mx-auto group">
-            <div class="absolute -inset-1 brand-gradient-bg rounded-[2.5rem] blur-lg opacity-20 group-hover:opacity-35 transition duration-700"></div>
+        <!-- Hero Visual: 3D Interactive Phone Scene -->
+        <div data-aos="zoom-in-up" data-aos-duration="1200" data-aos-delay="500" class="relative z-10 mt-20 w-full max-w-4xl mx-auto">
+            <div class="hero-scene flex items-center justify-center gap-6 sm:gap-10 md:gap-16 py-4">
 
-            <div class="relative w-full aspect-[16/9] md:aspect-[2/1] bg-white rounded-3xl overflow-hidden border border-gray-200 shadow-2xl">
-                <div class="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-50"></div>
+                <!-- CAMERA PHONE (left) -->
+                <div class="relative">
+                    <p class="text-center text-xs font-semibold text-gray-400 uppercase tracking-widest mb-4">Camera</p>
+                    <div class="phone-frame phone-camera">
+                        <div class="phone-screen">
+                            <!-- "Room" scene with pets -->
+                            <div class="absolute inset-0 bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50"></div>
+                            <!-- Floor -->
+                            <div class="absolute bottom-0 left-0 right-0 h-[40%] bg-gradient-to-t from-amber-100/80 to-transparent"></div>
+                            <!-- Window light -->
+                            <div class="absolute top-6 right-4 w-14 h-20 rounded-lg border-2 border-amber-200/50 bg-gradient-to-b from-yellow-100/60 to-transparent"></div>
+                            <div class="absolute top-8 right-6 w-5 h-5 text-yellow-300 text-lg">&#9728;</div>
 
-                <!-- Simulated camera feed UI -->
-                <div class="relative z-10 h-full flex items-stretch">
-                    <!-- Left: Camera feed area -->
-                    <div class="flex-1 relative m-4 md:m-6 rounded-2xl overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
-                        <!-- Fake room scene with gradient overlay -->
-                        <div class="absolute inset-0 opacity-30" style="background-image: radial-gradient(ellipse at 50% 40%, rgba(255,198,90,0.3) 0%, transparent 60%), radial-gradient(ellipse at 30% 70%, rgba(200,108,255,0.15) 0%, transparent 50%);"></div>
-
-                        <!-- Camera overlay UI elements -->
-                        <div class="absolute top-3 left-3 md:top-4 md:left-4 flex items-center gap-2">
-                            <div class="flex items-center gap-1.5 bg-red-500/90 text-white px-2.5 py-1 rounded-full text-[10px] md:text-xs font-bold backdrop-blur-sm">
-                                <div class="w-1.5 h-1.5 bg-white rounded-full animate-pulse-slow"></div>
-                                LIVE
+                            <!-- Dog -->
+                            <div class="absolute bottom-[22%] left-[15%] text-center" style="animation: paw-bounce 3s ease-in-out infinite;">
+                                <i class="fa-solid fa-dog text-amber-700/70 text-4xl sm:text-5xl drop-shadow-sm"></i>
                             </div>
-                            <div class="bg-black/40 text-white/80 px-2.5 py-1 rounded-full text-[10px] md:text-xs font-medium backdrop-blur-sm">
-                                <i class="fa-solid fa-shield-halved mr-1 text-green-400"></i> Encrypted
+                            <!-- Cat -->
+                            <div class="absolute bottom-[28%] right-[15%] text-center" style="animation: paw-bounce 3s ease-in-out 1.5s infinite;">
+                                <i class="fa-solid fa-cat text-gray-500/60 text-3xl sm:text-4xl drop-shadow-sm"></i>
                             </div>
-                        </div>
-
-                        <div class="absolute top-3 right-3 md:top-4 md:right-4 flex items-center gap-2">
-                            <div class="bg-black/40 text-white/70 px-2 py-1 rounded-full text-[10px] md:text-xs backdrop-blur-sm">HD</div>
-                        </div>
-
-                        <!-- Center camera icon -->
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center border border-white/20">
-                                <i class="fa-solid fa-baby text-white/60 text-2xl md:text-3xl"></i>
+                            <!-- Paw prints -->
+                            <div class="absolute bottom-[12%] left-[40%] text-amber-300/30">
+                                <i class="fa-solid fa-paw text-sm rotate-[-20deg]"></i>
                             </div>
-                        </div>
+                            <div class="absolute bottom-[16%] left-[55%] text-amber-300/25">
+                                <i class="fa-solid fa-paw text-xs rotate-[15deg]"></i>
+                            </div>
 
-                        <!-- Bottom bar -->
-                        <div class="absolute bottom-0 left-0 right-0 p-3 md:p-4 bg-gradient-to-t from-black/60 to-transparent">
-                            <div class="flex items-center justify-between">
-                                <div>
-                                    <p class="text-white text-xs md:text-sm font-semibold">Nursery Camera</p>
-                                    <p class="text-white/50 text-[10px] md:text-xs">Connected &middot; 0.2s latency</p>
-                                </div>
-                                <div class="flex items-center gap-2 md:gap-3">
-                                    <div class="w-7 h-7 md:w-8 md:h-8 rounded-full bg-white/15 flex items-center justify-center backdrop-blur-sm"><i class="fa-solid fa-microphone text-white/70 text-xs"></i></div>
-                                    <div class="w-7 h-7 md:w-8 md:h-8 rounded-full bg-white/15 flex items-center justify-center backdrop-blur-sm"><i class="fa-solid fa-volume-high text-white/70 text-xs"></i></div>
-                                    <div class="w-7 h-7 md:w-8 md:h-8 rounded-full bg-white/15 flex items-center justify-center backdrop-blur-sm"><i class="fa-solid fa-expand text-white/70 text-xs"></i></div>
+                            <!-- Camera UI overlay -->
+                            <div class="absolute top-3 left-3 flex items-center gap-1.5">
+                                <div class="flex items-center gap-1 bg-red-500/80 text-white px-2 py-0.5 rounded-full text-[9px] font-bold">
+                                    <div class="w-1.5 h-1.5 bg-white rounded-full animate-pulse-slow"></div>
+                                    REC
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <!-- Right: Info sidebar -->
-                    <div class="hidden md:flex flex-col justify-center w-64 pr-6 gap-5">
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-xl brand-gradient-bg flex items-center justify-center shadow-md shrink-0">
-                                <i class="fa-solid fa-video text-white text-sm"></i>
+                            <div class="absolute top-3 right-3 bg-black/20 text-white/80 px-2 py-0.5 rounded-full text-[9px] backdrop-blur-sm">
+                                <i class="fa-solid fa-signal text-green-400 mr-0.5"></i> HD
                             </div>
-                            <div>
-                                <p class="text-sm font-semibold text-gray-800">Live Streaming</p>
-                                <p class="text-xs text-gray-400">Real-time video & audio</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-purple to-brand-blue flex items-center justify-center shadow-md shrink-0">
-                                <i class="fa-solid fa-comments text-white text-sm"></i>
-                            </div>
-                            <div>
-                                <p class="text-sm font-semibold text-gray-800">Two-Way Audio</p>
-                                <p class="text-xs text-gray-400">Talk & listen instantly</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-gold to-brand-salmon flex items-center justify-center shadow-md shrink-0">
-                                <i class="fa-solid fa-lock text-white text-sm"></i>
-                            </div>
-                            <div>
-                                <p class="text-sm font-semibold text-gray-800">Always Private</p>
-                                <p class="text-xs text-gray-400">Encrypted & secure</p>
+                            <!-- Camera mode label -->
+                            <div class="absolute bottom-3 left-0 right-0 text-center">
+                                <span class="bg-black/30 text-white/90 px-3 py-1 rounded-full text-[10px] font-medium backdrop-blur-sm">
+                                    <i class="fa-solid fa-video mr-1"></i> Camera Mode
+                                </span>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- Connection signal between phones -->
+                <div class="relative flex flex-col items-center gap-3 py-8">
+                    <div class="relative w-16 sm:w-24 md:w-32 h-[2px]">
+                        <div class="absolute inset-0 brand-gradient-bg rounded-full opacity-30"></div>
+                        <!-- Animated signal dots -->
+                        <div class="absolute top-1/2 -translate-y-1/2 w-2 h-2 rounded-full brand-gradient-bg shadow-lg" style="animation: signal-travel 2s ease-in-out infinite;"></div>
+                        <div class="absolute top-1/2 -translate-y-1/2 w-2 h-2 rounded-full brand-gradient-bg shadow-lg" style="animation: signal-travel 2s ease-in-out 0.7s infinite;"></div>
+                        <div class="absolute top-1/2 -translate-y-1/2 w-2 h-2 rounded-full brand-gradient-bg shadow-lg" style="animation: signal-travel 2s ease-in-out 1.4s infinite;"></div>
+                    </div>
+                    <div class="flex items-center gap-1 text-[10px] font-medium text-gray-400">
+                        <i class="fa-solid fa-lock text-brand-purple text-[8px]"></i> Encrypted
+                    </div>
+                </div>
+
+                <!-- VIEWER PHONE (right) -->
+                <div class="relative">
+                    <p class="text-center text-xs font-semibold text-gray-400 uppercase tracking-widest mb-4">Viewer</p>
+                    <div class="phone-frame phone-viewer">
+                        <div class="phone-screen">
+                            <!-- Same scene as camera — the live feed -->
+                            <div class="absolute inset-0 bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50"></div>
+                            <div class="absolute bottom-0 left-0 right-0 h-[40%] bg-gradient-to-t from-amber-100/80 to-transparent"></div>
+                            <div class="absolute top-6 right-4 w-14 h-20 rounded-lg border-2 border-amber-200/50 bg-gradient-to-b from-yellow-100/60 to-transparent"></div>
+                            <div class="absolute top-8 right-6 w-5 h-5 text-yellow-300 text-lg">&#9728;</div>
+
+                            <div class="absolute bottom-[22%] left-[15%]" style="animation: paw-bounce 3s ease-in-out infinite;">
+                                <i class="fa-solid fa-dog text-amber-700/70 text-4xl sm:text-5xl drop-shadow-sm"></i>
+                            </div>
+                            <div class="absolute bottom-[28%] right-[15%]" style="animation: paw-bounce 3s ease-in-out 1.5s infinite;">
+                                <i class="fa-solid fa-cat text-gray-500/60 text-3xl sm:text-4xl drop-shadow-sm"></i>
+                            </div>
+                            <div class="absolute bottom-[12%] left-[40%] text-amber-300/30">
+                                <i class="fa-solid fa-paw text-sm rotate-[-20deg]"></i>
+                            </div>
+                            <div class="absolute bottom-[16%] left-[55%] text-amber-300/25">
+                                <i class="fa-solid fa-paw text-xs rotate-[15deg]"></i>
+                            </div>
+
+                            <!-- Viewer UI overlay -->
+                            <div class="absolute top-3 left-3 flex items-center gap-1.5">
+                                <div class="flex items-center gap-1 bg-red-500/80 text-white px-2 py-0.5 rounded-full text-[9px] font-bold">
+                                    <div class="w-1.5 h-1.5 bg-white rounded-full animate-pulse-slow"></div>
+                                    LIVE
+                                </div>
+                            </div>
+                            <div class="absolute top-3 right-3 bg-black/20 text-white/80 px-2 py-0.5 rounded-full text-[9px] backdrop-blur-sm">
+                                <i class="fa-solid fa-shield-halved text-green-400 mr-0.5"></i> Private
+                            </div>
+
+                            <!-- Viewer controls bar -->
+                            <div class="absolute bottom-0 left-0 right-0 p-2.5 bg-gradient-to-t from-black/50 to-transparent">
+                                <p class="text-white text-[10px] font-semibold mb-1.5">Living Room <span class="text-white/40">&middot; HD</span></p>
+                                <div class="flex items-center justify-center gap-3">
+                                    <div class="w-7 h-7 rounded-full bg-white/15 flex items-center justify-center backdrop-blur-sm"><i class="fa-solid fa-microphone text-white/80 text-[10px]"></i></div>
+                                    <div class="w-7 h-7 rounded-full bg-white/15 flex items-center justify-center backdrop-blur-sm"><i class="fa-solid fa-volume-high text-white/80 text-[10px]"></i></div>
+                                    <div class="w-7 h-7 rounded-full bg-white/15 flex items-center justify-center backdrop-blur-sm"><i class="fa-solid fa-expand text-white/80 text-[10px]"></i></div>
+                                    <div class="w-7 h-7 rounded-full bg-white/15 flex items-center justify-center backdrop-blur-sm"><i class="fa-solid fa-bolt text-brand-gold text-[10px]"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
