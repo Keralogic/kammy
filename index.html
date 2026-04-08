@@ -1,31 +1,41 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kammy | World-Class Home Security & Baby Monitor</title>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- AOS Animations -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" type="image/svg+xml" href="app_logo.svg">
-    
+
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: { sans: ['Inter', 'sans-serif'] },
                     colors: {
-                        brand: { dark: '#050505', primary: '#3b82f6', accent: '#f59e0b' }
+                        brand: {
+                            gold: '#FFC65A',
+                            salmon: '#FF6C6C',
+                            purple: '#C86CFF',
+                            plum: '#7D3C98',
+                            blue: '#0077B6',
+                        }
                     },
                     animation: {
-                        'spin-slow': 'spin 15s linear infinite',
+                        'spin-slow': 'spin 20s linear infinite',
                         'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'float-delayed': 'float 6s ease-in-out 3s infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
                     }
                 }
             }
@@ -33,250 +43,277 @@
     </script>
 
     <style>
-        body { 
-            background-color: #050505; 
-            color: #ffffff; 
-            overflow-x: hidden; 
-        }
-        
-        /* Glassmorphism effects */
-        .glass { 
-            background: rgba(255, 255, 255, 0.03); 
-            backdrop-filter: blur(20px); 
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.05); 
-        }
-        
-        .glass-nav {
-            background: rgba(5, 5, 5, 0.7); 
-            backdrop-filter: blur(20px); 
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
+        body {
+            background-color: #FAFAFA;
+            color: #1a1a2e;
+            overflow-x: hidden;
         }
 
-        /* Ambient Glows */
-        .glow-bg-1 { 
-            position: absolute; width: 600px; height: 600px; 
-            background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, rgba(0,0,0,0) 70%); 
-            border-radius: 50%; top: -10%; left: -10%; z-index: -1; pointer-events: none;
-        }
-        .glow-bg-2 { 
-            position: absolute; width: 800px; height: 800px; 
-            background: radial-gradient(circle, rgba(245,158,11,0.08) 0%, rgba(0,0,0,0) 60%); 
-            border-radius: 50%; top: 40%; right: -20%; z-index: -1; pointer-events: none;
-        }
-        .glow-bg-3 { 
-            position: absolute; width: 800px; height: 800px; 
-            background: radial-gradient(circle, rgba(16,185,129,0.08) 0%, rgba(0,0,0,0) 60%); 
-            border-radius: 50%; bottom: -10%; left: 10%; z-index: -1; pointer-events: none;
+        .gradient-text-brand {
+            background: linear-gradient(90deg, #FFC65A, #FF6C6C, #C86CFF, #7D3C98, #0077B6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        /* Text Gradients */
-        .gradient-text-blue { 
-            background: linear-gradient(135deg, #60a5fa, #a78bfa); 
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
+        .gradient-text-warm {
+            background: linear-gradient(135deg, #FFC65A, #FF6C6C);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        .gradient-text-warm { 
-            background: linear-gradient(135deg, #fbbf24, #f97316); 
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
+
+        .gradient-text-cool {
+            background: linear-gradient(135deg, #C86CFF, #0077B6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        
-        /* Smooth Scroll */
+
+        .brand-gradient-bg {
+            background: linear-gradient(135deg, #FFC65A, #FF6C6C, #C86CFF, #7D3C98, #0077B6);
+        }
+
+        .blob-gold {
+            position: absolute; width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(255,198,90,0.12) 0%, transparent 70%);
+            border-radius: 50%; pointer-events: none; z-index: 0;
+        }
+        .blob-salmon {
+            position: absolute; width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(255,108,108,0.08) 0%, transparent 70%);
+            border-radius: 50%; pointer-events: none; z-index: 0;
+        }
+        .blob-purple {
+            position: absolute; width: 700px; height: 700px;
+            background: radial-gradient(circle, rgba(200,108,255,0.08) 0%, transparent 70%);
+            border-radius: 50%; pointer-events: none; z-index: 0;
+        }
+        .blob-blue {
+            position: absolute; width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(0,119,182,0.08) 0%, transparent 70%);
+            border-radius: 50%; pointer-events: none; z-index: 0;
+        }
+
+        .card-glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0,0,0,0.06);
+        }
+
+        .nav-light {
+            background: rgba(250, 250, 250, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        ::selection { background-color: #C86CFF; color: white; }
+
         html { scroll-behavior: smooth; }
-        
-        /* Custom Selection */
-        ::selection { background-color: #3b82f6; color: white; }
+
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .animated-gradient-line {
+            background: linear-gradient(90deg, #FFC65A, #FF6C6C, #C86CFF, #7D3C98, #0077B6, #FFC65A);
+            background-size: 200% 100%;
+            animation: gradient-shift 4s ease infinite;
+        }
     </style>
 </head>
 
-<body class="antialiased selection:bg-blue-500 selection:text-white">
-
-    <!-- Ambient Glowing Backgrounds -->
-    <div class="glow-bg-1"></div>
-    <div class="glow-bg-2"></div>
-    <div class="glow-bg-3"></div>
+<body class="antialiased">
 
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 glass-nav transition-all duration-300" id="navbar">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center relative">
-            <a href="#" class="text-2xl font-bold tracking-tighter flex items-center gap-2 hover:opacity-80 transition">
-                <img src="full_logo.svg" alt="Kammy" class="h-10 drop-shadow-[0_0_15px_rgba(255,198,90,0.8)]">
+    <nav class="fixed w-full z-50 nav-light transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="flex items-center hover:opacity-80 transition">
+                <img src="full_logo.svg" alt="Kammy" class="h-10">
             </a>
-            
-            <div class="hidden md:flex gap-10 text-sm font-medium text-gray-400">
-                <a href="#features" class="hover:text-white transition duration-300">Experience</a>
-                <a href="#security" class="hover:text-white transition duration-300">Security</a>
-                <a href="#how-it-works" class="hover:text-white transition duration-300">How it Works</a>
-                <a href="https://keralogic.github.io/kammy-legal/" class="hover:text-white transition duration-300">Privacy</a>
+
+            <div class="hidden md:flex gap-10 text-sm font-medium text-gray-500">
+                <a href="#features" class="hover:text-brand-plum transition duration-300">Features</a>
+                <a href="#security" class="hover:text-brand-plum transition duration-300">Security</a>
+                <a href="#how-it-works" class="hover:text-brand-plum transition duration-300">How it Works</a>
+                <a href="https://keralogic.github.io/kammy-legal/" class="hover:text-brand-plum transition duration-300">Privacy</a>
             </div>
-            
-            <div class="flex items-center gap-4">
-                <a href="#download" class="hidden sm:flex bg-white text-black px-6 py-2.5 rounded-full font-semibold text-sm hover:scale-105 transition transform shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:shadow-[0_0_25px_rgba(255,255,255,0.4)]">
-                    Get the App
-                </a>
-            </div>
+
+            <a href="#download" class="hidden sm:flex brand-gradient-bg text-white px-6 py-2.5 rounded-full font-semibold text-sm hover:scale-105 hover:shadow-lg transition-all duration-300">
+                Get the App
+            </a>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="relative pt-40 pb-20 md:pt-48 md:pb-32 px-6 flex flex-col items-center justify-center min-h-[90vh] text-center overflow-hidden">
-        
-        <div data-aos="fade-down" data-aos-duration="1000" class="inline-flex items-center gap-2 p-1 pr-4 pl-2 rounded-full glass mb-8 text-sm font-medium text-blue-300 border border-blue-500/20 backdrop-blur-3xl shadow-lg">
-            <span class="bg-blue-500/20 text-blue-400 rounded-full px-2 py-0.5 text-xs font-bold uppercase tracking-wider">NEW</span>
-            <span class="opacity-90">Redefining home monitoring.</span>
+    <!-- ==================== HERO ==================== -->
+    <section class="relative pt-36 pb-20 md:pt-44 md:pb-32 px-6 flex flex-col items-center justify-center min-h-[92vh] text-center overflow-hidden">
+
+        <div class="blob-gold" style="top: -15%; left: -10%;"></div>
+        <div class="blob-purple" style="top: 20%; right: -15%;"></div>
+        <div class="blob-blue" style="bottom: -10%; left: 30%;"></div>
+
+        <div data-aos="fade-down" data-aos-duration="800" class="relative z-10 inline-flex items-center gap-2 py-1.5 pr-5 pl-2 rounded-full bg-white shadow-md border border-gray-100 mb-10 text-sm font-medium text-gray-600">
+            <span class="brand-gradient-bg text-white rounded-full px-2.5 py-0.5 text-xs font-bold uppercase tracking-wider">New</span>
+            Redefining home monitoring.
         </div>
 
-        <h1 data-aos="fade-up" data-aos-duration="1200" data-aos-delay="100" class="text-6xl md:text-8xl font-extrabold tracking-tighter max-w-5xl leading-[1.1] mb-6 drop-shadow-2xl">
+        <h1 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="relative z-10 text-5xl sm:text-6xl md:text-8xl font-black tracking-tighter max-w-5xl leading-[1.05] mb-7">
             Peace of mind.<br />
-            <span class="gradient-text-blue block mt-2">Always with you.</span>
+            <span class="gradient-text-brand">Always with you.</span>
         </h1>
-        
-        <p data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200" class="text-xl md:text-2xl text-gray-400 max-w-2xl mb-12 font-light leading-relaxed">
-            Kammy securely transforms your devices into a world-class monitor. 
-            Experience the warmth of a baby monitor, the joy of a pet cam, 
-            and the unyielding trust of professional video surveillance.
+
+        <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" class="relative z-10 text-lg md:text-xl text-gray-500 max-w-2xl mb-12 font-light leading-relaxed">
+            Kammy transforms your spare devices into a world-class monitor.
+            The warmth of a baby monitor, the joy of a pet cam,
+            and the unyielding trust of professional security &mdash; in one app.
         </p>
-        
-        <div data-aos="fade-up" data-aos-duration="1200" data-aos-delay="300" class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto px-6">
-            <a href="#download" class="w-full sm:w-auto bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-full font-semibold text-lg shadow-[0_0_30px_rgba(59,130,246,0.3)] hover:shadow-[0_0_40px_rgba(59,130,246,0.6)] transition-all duration-300 flex items-center justify-center gap-3">
-                <i class="fa-brands fa-google-play text-xl"></i> Play Store
+
+        <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300" class="relative z-10 flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+            <a href="#download" class="w-full sm:w-auto brand-gradient-bg text-white px-9 py-4 rounded-full font-semibold text-lg shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 flex items-center justify-center gap-3">
+                <i class="fa-brands fa-google-play text-xl"></i> Download Free
             </a>
-            <a href="#how-it-works" class="w-full sm:w-auto glass hover:bg-white/10 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 flex items-center justify-center gap-2 group">
-                See it in action <i class="fa-solid fa-arrow-down text-sm group-hover:translate-y-1 transition-transform"></i>
+            <a href="#how-it-works" class="w-full sm:w-auto bg-white text-gray-700 border border-gray-200 px-9 py-4 rounded-full font-semibold text-lg hover:border-brand-purple/40 hover:text-brand-plum transition-all duration-300 flex items-center justify-center gap-2 group shadow-sm">
+                See how it works <i class="fa-solid fa-arrow-down text-sm group-hover:translate-y-1 transition-transform"></i>
             </a>
         </div>
 
-        <!-- Abstract App Interface Mockup -->
-        <div data-aos="zoom-in-up" data-aos-duration="1500" data-aos-delay="500" class="mt-24 relative w-full max-w-4xl mx-auto drop-shadow-2xl group">
-            <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-[2.5rem] blur opacity-25 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
-            
-            <div class="relative w-full aspect-[16/9] md:aspect-[21/9] bg-black/80 rounded-3xl overflow-hidden border border-white/10 shadow-2xl flex items-center justify-center backdrop-blur-sm">
-                <!-- Abstract visual of a camera feed -->
-                <div class="absolute inset-0 bg-gradient-to-tr from-blue-900/30 to-black"></div>
-                <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPgo8cmVjdCB3aWR0aD0iOCIgaGVpZ2h0PSI4IiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMDUiLz4KPC9zdmc+')] opacity-50"></div>
-                
+        <!-- Hero Visual: Camera Feed Mockup -->
+        <div data-aos="zoom-in-up" data-aos-duration="1200" data-aos-delay="500" class="relative z-10 mt-20 w-full max-w-4xl mx-auto group">
+            <div class="absolute -inset-1 brand-gradient-bg rounded-[2.5rem] blur-lg opacity-20 group-hover:opacity-35 transition duration-700"></div>
+
+            <div class="relative w-full aspect-[16/9] md:aspect-[21/9] bg-white rounded-3xl overflow-hidden border border-gray-200 shadow-2xl flex items-center justify-center">
+                <div class="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-50"></div>
+                <div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(circle, #000 1px, transparent 1px); background-size: 24px 24px;"></div>
+
                 <div class="relative z-10 flex flex-col items-center justify-center">
-                    <div class="w-24 h-24 rounded-full border border-white/20 flex items-center justify-center relative bg-black/40 backdrop-blur-md">
-                        <div class="w-12 h-12 rounded-full border-2 border-blue-500/50 flex flex-col items-center justify-center">
-                             <div class="w-6 h-6 rounded-full bg-blue-500 shadow-[0_0_20px_#3b82f6]"></div>
-                        </div>
-                        <!-- Live indicator -->
-                        <div class="absolute -top-2 -right-4 flex items-center justify-center gap-2 bg-red-500/20 text-red-400 px-3 py-1 rounded-full border border-red-500/30 text-xs font-bold backdrop-blur-md">
-                            <div class="w-2 h-2 bg-red-500 rounded-full animate-pulse-slow shadow-[0_0_8px_red]"></div>
+                    <div class="w-28 h-28 rounded-full flex items-center justify-center relative">
+                        <div class="absolute inset-0 rounded-full brand-gradient-bg opacity-10"></div>
+                        <div class="absolute inset-2 rounded-full bg-white"></div>
+                        <div class="absolute inset-4 rounded-full border-2 border-brand-plum/20"></div>
+                        <div class="w-10 h-10 rounded-full brand-gradient-bg shadow-lg relative z-10"></div>
+                        <div class="absolute -top-2 -right-6 flex items-center gap-1.5 bg-red-50 text-red-500 px-3 py-1 rounded-full border border-red-200 text-xs font-bold">
+                            <div class="w-2 h-2 bg-red-500 rounded-full animate-pulse-slow"></div>
                             LIVE
                         </div>
-                        <!-- Scanning ring -->
-                        <div class="absolute inset-0 rounded-full border-t border-r border-blue-400 animate-spin-slow opacity-50"></div>
+                        <div class="absolute -inset-2 rounded-full border-t-2 border-r-2 border-brand-purple/30 animate-spin-slow"></div>
                     </div>
-                    <div class="mt-6 text-white/70 font-medium tracking-widest text-sm uppercase flex items-center gap-4">
-                        <span class="w-8 h-[1px] bg-white/20"></span>
-                        Encrypted Stream
-                        <span class="w-8 h-[1px] bg-white/20"></span>
+                    <div class="mt-6 text-gray-400 font-medium tracking-widest text-xs uppercase flex items-center gap-3">
+                        <span class="w-8 h-[1px] bg-gray-200"></span>
+                        End-to-End Encrypted
+                        <span class="w-8 h-[1px] bg-gray-200"></span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Experience Section (Features) -->
-    <section id="features" class="py-32 px-6 relative z-10">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-24 max-w-3xl mx-auto">
-                <h2 data-aos="fade-up" class="text-SM font-bold text-blue-500 tracking-widest uppercase mb-4">The Experience</h2>
-                <h3 data-aos="fade-up" data-aos-delay="100" class="text-4xl md:text-6xl font-bold tracking-tight leading-tight">
+    <div class="h-[2px] animated-gradient-line mx-auto max-w-4xl rounded-full"></div>
+
+    <!-- ==================== FEATURES ==================== -->
+    <section id="features" class="py-28 px-6 relative overflow-hidden">
+        <div class="blob-salmon" style="top: 10%; left: -15%;"></div>
+        <div class="blob-gold" style="bottom: 5%; right: -10%;"></div>
+
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="text-center mb-20 max-w-3xl mx-auto">
+                <h2 data-aos="fade-up" class="text-sm font-bold text-brand-plum tracking-widest uppercase mb-4">The Experience</h2>
+                <h3 data-aos="fade-up" data-aos-delay="100" class="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight text-gray-900">
                     One app.<br><span class="gradient-text-warm">Infinite possibilities.</span>
                 </h3>
             </div>
-            
+
             <div class="grid md:grid-cols-3 gap-8">
                 <!-- Baby Monitor -->
-                <div data-aos="fade-up" data-aos-delay="0" class="group glass p-10 rounded-[2rem] hover:bg-white/5 transition-all duration-500 border border-white/5 hover:border-white/10">
-                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-3xl mb-8 shadow-lg shadow-orange-500/20 group-hover:scale-110 transition-transform duration-500">
-                        <i class="fa-solid fa-baby text-white text-2xl drop-shadow-md"></i>
+                <div data-aos="fade-up" data-aos-delay="0" class="group card-glass p-10 rounded-[2rem] hover:shadow-xl transition-all duration-500 hover:-translate-y-2">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-gold to-brand-salmon flex items-center justify-center mb-8 shadow-lg shadow-brand-gold/20 group-hover:scale-110 transition-transform duration-500">
+                        <i class="fa-solid fa-baby text-white text-2xl"></i>
                     </div>
-                    <h3 class="text-3xl font-bold mb-4 tracking-tight">Baby Monitor</h3>
-                    <p class="text-gray-400 text-lg leading-relaxed font-light">
-                        Feel the warmth of being right there. Hear every breath, sing lullabies remotely with 2-way audio, and receive instant sound alerts so your baby is never truly alone.
+                    <h3 class="text-2xl font-bold mb-3 tracking-tight text-gray-900">Baby Monitor</h3>
+                    <p class="text-gray-500 text-base leading-relaxed font-light">
+                        Feel the warmth of being right there. Hear every breath, sing lullabies remotely with 2-way audio, and receive instant alerts so your baby is never truly alone.
                     </p>
                 </div>
 
                 <!-- Pet Companion -->
-                <div data-aos="fade-up" data-aos-delay="150" class="group glass p-10 rounded-[2rem] hover:bg-white/5 transition-all duration-500 border border-white/5 hover:border-white/10">
-                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-indigo-400 to-purple-500 flex items-center justify-center text-3xl mb-8 shadow-lg shadow-purple-500/20 group-hover:scale-110 transition-transform duration-500">
-                        <i class="fa-solid fa-paw text-white text-2xl drop-shadow-md"></i>
+                <div data-aos="fade-up" data-aos-delay="150" class="group card-glass p-10 rounded-[2rem] hover:shadow-xl transition-all duration-500 hover:-translate-y-2">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-purple to-brand-plum flex items-center justify-center mb-8 shadow-lg shadow-brand-purple/20 group-hover:scale-110 transition-transform duration-500">
+                        <i class="fa-solid fa-paw text-white text-2xl"></i>
                     </div>
-                    <h3 class="text-3xl font-bold mb-4 tracking-tight">Pet Companion</h3>
-                    <p class="text-gray-400 text-lg leading-relaxed font-light">
-                        Check in on your furry friends from anywhere in the world. Use two-way audio to comfort them seamlessly, or stop them from chewing your favorite shoes.
+                    <h3 class="text-2xl font-bold mb-3 tracking-tight text-gray-900">Pet Companion</h3>
+                    <p class="text-gray-500 text-base leading-relaxed font-light">
+                        Check in on your furry friends from anywhere. Use two-way audio to comfort them, or catch them red-handed chewing your favorite shoes.
                     </p>
                 </div>
 
-                <!-- Security Surveillance -->
-                <div data-aos="fade-up" data-aos-delay="300" class="group glass p-10 rounded-[2rem] hover:bg-white/5 transition-all duration-500 border border-white/5 hover:border-white/10 relative overflow-hidden">
-                    <!-- Subtle shimmer -->
-                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:animate-[shimmer_2s_infinite]"></div>
-                    
-                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center text-3xl mb-8 shadow-lg shadow-teal-500/20 group-hover:scale-110 transition-transform duration-500 relative z-10">
-                        <i class="fa-solid fa-shield-check text-white text-2xl drop-shadow-md"></i>
+                <!-- Security -->
+                <div data-aos="fade-up" data-aos-delay="300" class="group card-glass p-10 rounded-[2rem] hover:shadow-xl transition-all duration-500 hover:-translate-y-2">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-plum to-brand-blue flex items-center justify-center mb-8 shadow-lg shadow-brand-blue/20 group-hover:scale-110 transition-transform duration-500">
+                        <i class="fa-solid fa-shield-halved text-white text-2xl"></i>
                     </div>
-                    <h3 class="text-3xl font-bold mb-4 tracking-tight relative z-10">Pro Security</h3>
-                    <p class="text-gray-400 text-lg leading-relaxed font-light relative z-10">
-                        Bank-grade security for your sanctuary. End-to-end encrypted WebRTC streams and motion alerts. Your home, monitored exclusively by you. Uncompromising privacy.
+                    <h3 class="text-2xl font-bold mb-3 tracking-tight text-gray-900">Pro Security</h3>
+                    <p class="text-gray-500 text-base leading-relaxed font-light">
+                        Bank-grade encrypted WebRTC streams and motion alerts. Your home, monitored exclusively by you. Uncompromising privacy. Zero compromises.
                     </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- How It Works Section -->
-    <section id="how-it-works" class="py-32 px-6">
-        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-20">
-            <!-- Left Side / Visuals -->
+    <!-- ==================== HOW IT WORKS ==================== -->
+    <section id="how-it-works" class="py-28 px-6 relative overflow-hidden">
+        <div class="blob-purple" style="top: -10%; right: -20%;"></div>
+        <div class="blob-blue" style="bottom: -5%; left: -10%;"></div>
+
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-20 relative z-10">
             <div class="w-full lg:w-1/2 relative" data-aos="fade-right">
                 <div class="aspect-square max-w-md mx-auto relative flex items-center justify-center">
-                    <!-- Outer animated rings -->
-                    <div class="absolute inset-0 border-2 border-white/5 rounded-full animate-[spin_20s_linear_infinite]"></div>
-                    <div class="absolute inset-8 border border-blue-500/20 rounded-full animate-[spin_15s_linear_infinite_reverse]"></div>
-                    <div class="absolute inset-16 bg-blue-900/10 rounded-full backdrop-blur-md border border-white/10 glass flex items-center justify-center shadow-[0_0_50px_rgba(59,130,246,0.15)] group hover:shadow-[0_0_80px_rgba(59,130,246,0.3)] transition-all duration-700">
-                        <i class="fa-solid fa-qrcode text-8xl text-white opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500"></i>
+                    <div class="absolute inset-0 rounded-full border-2 border-gray-100 animate-spin-slow"></div>
+                    <div class="absolute inset-8 rounded-full border border-brand-purple/15 animate-[spin_15s_linear_infinite_reverse]"></div>
+                    <div class="absolute inset-16 rounded-full bg-white shadow-xl border border-gray-100 flex items-center justify-center">
+                        <i class="fa-solid fa-qrcode text-7xl gradient-text-cool"></i>
                     </div>
-                    
-                    <!-- Floating abstract phones -->
-                    <div class="absolute top-10 left-0 w-20 h-32 bg-black border border-white/20 rounded-xl glass shadow-2xl skew-y-6 rotate-12 -translate-x-4 animate-[bounce_4s_infinite]"></div>
-                    <div class="absolute bottom-10 right-0 w-20 h-32 bg-black border border-blue-500/40 rounded-xl glass shadow-2xl -skew-y-6 -rotate-12 translate-x-4 animate-[bounce_5s_infinite_1s]"></div>
+
+                    <div class="absolute top-8 left-0 w-[72px] h-[120px] bg-white border border-gray-200 rounded-2xl shadow-xl animate-float flex items-center justify-center">
+                        <i class="fa-solid fa-video text-brand-gold text-xl"></i>
+                    </div>
+                    <div class="absolute bottom-8 right-0 w-[72px] h-[120px] bg-white border border-gray-200 rounded-2xl shadow-xl animate-float-delayed flex items-center justify-center">
+                        <i class="fa-solid fa-eye text-brand-blue text-xl"></i>
+                    </div>
                 </div>
             </div>
-            
-            <!-- Right Side / Text -->
+
             <div class="w-full lg:w-1/2" data-aos="fade-left">
-                <h2 class="text-SM font-bold text-blue-500 tracking-widest uppercase mb-4">Simplicity First</h2>
-                <h3 class="text-4xl md:text-6xl font-bold mb-8 tracking-tight leading-tight">Setup in seconds. <br><span class="text-gray-500">Literally.</span></h3>
-                <p class="text-xl text-gray-400 mb-10 font-light leading-relaxed">
-                    Throw away complicated manuals. No messy IP configurations, no wires. Install Kammy on any two Android devices to create an instant, secure connection.
+                <h2 class="text-sm font-bold text-brand-plum tracking-widest uppercase mb-4">Simplicity First</h2>
+                <h3 class="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight leading-tight text-gray-900">Setup in seconds.</h3>
+                <p class="text-lg text-gray-500 mb-12 font-light leading-relaxed">
+                    No manuals. No IP configurations. No wires. Install Kammy on any two Android devices and create an instant, secure connection.
                 </p>
-                
+
                 <div class="space-y-8">
-                    <div class="flex items-start gap-6 group cursor-default">
-                        <div class="mt-1 w-12 h-12 rounded-full glass border border-white/10 flex items-center justify-center font-bold text-xl group-hover:bg-blue-600 transition-colors shadow-lg">1</div>
+                    <div class="flex items-start gap-5 group">
+                        <div class="mt-1 w-12 h-12 rounded-full bg-gradient-to-br from-brand-gold to-brand-salmon text-white flex items-center justify-center font-bold text-lg shrink-0 shadow-md group-hover:scale-110 transition-transform">1</div>
                         <div>
-                            <h4 class="text-2xl font-bold mb-2">Device A: Camera</h4>
-                            <p class="text-gray-400 font-light">Set your spare phone up facing what matters most and select Camera Mode.</p>
+                            <h4 class="text-xl font-bold mb-1 text-gray-900">Set up the Camera</h4>
+                            <p class="text-gray-500 font-light">Place your spare phone facing what matters most and select Camera Mode.</p>
                         </div>
                     </div>
-                    
-                    <div class="flex items-start gap-6 group cursor-default">
-                        <div class="mt-1 w-12 h-12 rounded-full glass border border-white/10 flex items-center justify-center font-bold text-xl group-hover:bg-blue-600 transition-colors shadow-lg">2</div>
+
+                    <div class="flex items-start gap-5 group">
+                        <div class="mt-1 w-12 h-12 rounded-full bg-gradient-to-br from-brand-purple to-brand-plum text-white flex items-center justify-center font-bold text-lg shrink-0 shadow-md group-hover:scale-110 transition-transform">2</div>
                         <div>
-                            <h4 class="text-2xl font-bold mb-2">Device B: Viewer</h4>
-                            <p class="text-gray-400 font-light">Use your primary phone, tap Viewer Mode to generate a secure QR code.</p>
+                            <h4 class="text-xl font-bold mb-1 text-gray-900">Open the Viewer</h4>
+                            <p class="text-gray-500 font-light">On your primary phone, tap Viewer Mode to generate a secure QR code.</p>
                         </div>
                     </div>
-                    
-                    <div class="flex items-start gap-6 group cursor-default">
-                        <div class="mt-1 w-12 h-12 rounded-full glass border border-white/10 flex items-center justify-center font-bold text-xl group-hover:bg-teal-500 transition-colors shadow-[0_0_20px_rgba(20,184,166,0)] group-hover:shadow-[0_0_20px_rgba(20,184,166,0.4)]">3</div>
+
+                    <div class="flex items-start gap-5 group">
+                        <div class="mt-1 w-12 h-12 rounded-full bg-gradient-to-br from-brand-plum to-brand-blue text-white flex items-center justify-center font-bold text-lg shrink-0 shadow-md group-hover:scale-110 transition-transform">3</div>
                         <div>
-                            <h4 class="text-2xl font-bold mb-2 text-white group-hover:text-teal-400 transition-colors">Scan & Connect</h4>
-                            <p class="text-gray-400 font-light">Point the camera device at the QR code. Crystal clear video starts streaming instantly.</p>
+                            <h4 class="text-xl font-bold mb-1 text-gray-900">Scan & Watch</h4>
+                            <p class="text-gray-500 font-light">Point the camera device at the QR code. Crystal-clear video streams instantly.</p>
                         </div>
                     </div>
                 </div>
@@ -284,83 +321,101 @@
         </div>
     </section>
 
-    <!-- Deep Security Section -->
-    <section id="security" class="py-32 px-6 relative bg-gradient-to-b from-black via-gray-900/20 to-black">
-        <div class="max-w-4xl mx-auto text-center">
-            <i class="fa-solid fa-lock text-5xl text-gray-600 mb-8" data-aos="fade-down"></i>
-            <h2 data-aos="zoom-in" class="text-4xl md:text-5xl font-bold mb-8">Your privacy is our <span class="text-gray-400 border-b-2 border-gray-600 pb-1">obsession</span>.</h2>
-            <p data-aos="fade-up" class="text-xl text-gray-400 font-light leading-relaxed">
-                We believe security isn't just a feature; it's the foundation. Video and audio streams are routed strictly via blazing fast WebRTC tunnels. 
-                Data doesn't sit openly on our servers. You alone hold the keys to your home.
+    <!-- ==================== SECURITY ==================== -->
+    <section id="security" class="py-28 px-6 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-gray-50 via-white to-gray-50"></div>
+        <div class="blob-gold" style="top: -20%; right: 10%;"></div>
+
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <div data-aos="fade-down" class="w-20 h-20 rounded-full bg-gradient-to-br from-brand-plum to-brand-blue mx-auto mb-8 flex items-center justify-center shadow-xl">
+                <i class="fa-solid fa-lock text-white text-3xl"></i>
+            </div>
+            <h2 data-aos="zoom-in" class="text-4xl md:text-5xl font-extrabold mb-8 text-gray-900">
+                Your privacy is our <span class="gradient-text-cool border-b-2 border-brand-purple/20 pb-1">obsession</span>.
+            </h2>
+            <p data-aos="fade-up" class="text-lg text-gray-500 font-light leading-relaxed max-w-2xl mx-auto">
+                Video and audio streams travel through blazing-fast WebRTC tunnels with end-to-end encryption.
+                No data sits on our servers. You alone hold the keys to your home.
             </p>
-        </div>
-    </section>
 
-    <!-- Download CTA -->
-    <section id="download" class="py-32 px-6 relative overflow-hidden">
-        <div class="absolute inset-0 bg-blue-900/10"></div>
-        <div class="max-w-4xl mx-auto text-center relative z-10 glass p-12 md:p-20 rounded-[3rem] border border-blue-500/20 shadow-[0_0_100px_rgba(59,130,246,0.1)]">
-            <h2 data-aos="fade-up" class="text-5xl md:text-6xl font-extrabold mb-6 tracking-tight">Experience true peace.</h2>
-            <p data-aos="fade-up" data-aos-delay="100" class="text-xl text-gray-300 mb-12 font-light">Join modern parents, pet lovers, and secure homeowners today.</p>
-            <div data-aos="fade-up" data-aos-delay="200">
-                <a href="https://play.google.com/store" class="bg-white text-black px-10 py-5 rounded-full font-bold text-xl hover:scale-105 transition transform shadow-[0_0_40px_rgba(255,255,255,0.2)] hover:shadow-[0_0_50px_rgba(255,255,255,0.5)] inline-flex items-center gap-3">
-                    <i class="fa-brands fa-google-play text-2xl text-blue-600"></i> Download Kammy
-                </a>
+            <div data-aos="fade-up" data-aos-delay="200" class="flex flex-wrap justify-center gap-4 mt-12">
+                <div class="card-glass px-5 py-3 rounded-full text-sm font-medium text-gray-600 flex items-center gap-2 shadow-sm">
+                    <i class="fa-solid fa-shield-halved text-brand-plum"></i> End-to-End Encrypted
+                </div>
+                <div class="card-glass px-5 py-3 rounded-full text-sm font-medium text-gray-600 flex items-center gap-2 shadow-sm">
+                    <i class="fa-solid fa-server text-brand-blue"></i> Zero Server Storage
+                </div>
+                <div class="card-glass px-5 py-3 rounded-full text-sm font-medium text-gray-600 flex items-center gap-2 shadow-sm">
+                    <i class="fa-solid fa-bolt text-brand-gold"></i> WebRTC Powered
+                </div>
             </div>
-            <p class="mt-8 text-sm text-gray-500">Available exclusively for Android devices.</p>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="glass border-t border-white/10 pt-20 pb-10 px-6">
+    <!-- ==================== DOWNLOAD CTA ==================== -->
+    <section id="download" class="py-28 px-6 relative overflow-hidden">
+        <div class="blob-salmon" style="top: -20%; left: 20%;"></div>
+        <div class="blob-purple" style="bottom: -20%; right: 10%;"></div>
+
+        <div class="max-w-4xl mx-auto relative z-10">
+            <div class="p-[2px] rounded-[3rem] brand-gradient-bg shadow-2xl">
+                <div class="bg-white rounded-[2.9rem] p-12 md:p-20 text-center">
+                    <h2 data-aos="fade-up" class="text-4xl md:text-6xl font-black mb-6 tracking-tight text-gray-900">
+                        Experience <span class="gradient-text-brand">true peace</span>.
+                    </h2>
+                    <p data-aos="fade-up" data-aos-delay="100" class="text-lg text-gray-500 mb-12 font-light">
+                        Join modern parents, pet lovers, and secure homeowners today.
+                    </p>
+                    <div data-aos="fade-up" data-aos-delay="200">
+                        <a href="https://play.google.com/store" class="brand-gradient-bg text-white px-12 py-5 rounded-full font-bold text-xl hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl inline-flex items-center gap-3">
+                            <i class="fa-brands fa-google-play text-2xl"></i> Download Kammy
+                        </a>
+                    </div>
+                    <p class="mt-8 text-sm text-gray-400">Free on Android. No credit card required.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="h-[2px] animated-gradient-line mx-auto max-w-4xl rounded-full"></div>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="bg-white border-t border-gray-100 pt-16 pb-10 px-6">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-            <div class="flex flex-col items-center md:items-start gap-4">
-                <div class="text-2xl font-bold tracking-tighter flex items-center gap-2">
-                    <img src="full_logo.svg" alt="Kammy" class="h-9 drop-shadow-[0_0_10px_rgba(255,198,90,0.6)]">
-                </div>
-                <div class="text-gray-500 text-sm font-light">
-                    Transforming spare phones into peace of mind.
-                </div>
+            <div class="flex flex-col items-center md:items-start gap-3">
+                <img src="full_logo.svg" alt="Kammy" class="h-10">
+                <p class="text-gray-400 text-sm font-light">Transforming spare phones into peace of mind.</p>
             </div>
-            
-            <div class="flex gap-8 text-sm font-medium">
-                <a href="#features" class="text-gray-400 hover:text-white transition">Features</a>
-                <a href="https://keralogic.github.io/kammy-legal/" class="text-gray-400 hover:text-white transition">Privacy Policy</a>
-                <a href="https://keralogic.github.io/kammy-legal/" class="text-gray-400 hover:text-white transition">Terms of Service</a>
-                <a href="mailto:support.keralogic@gmail.com" class="text-gray-400 hover:text-white transition">Contact Support</a>
+
+            <div class="flex flex-wrap justify-center gap-8 text-sm font-medium">
+                <a href="#features" class="text-gray-500 hover:text-brand-plum transition">Features</a>
+                <a href="https://keralogic.github.io/kammy-legal/" class="text-gray-500 hover:text-brand-plum transition">Privacy Policy</a>
+                <a href="https://keralogic.github.io/kammy-legal/" class="text-gray-500 hover:text-brand-plum transition">Terms of Service</a>
+                <a href="mailto:support.keralogic@gmail.com" class="text-gray-500 hover:text-brand-plum transition">Contact</a>
             </div>
         </div>
-        
-        <div class="max-w-7xl mx-auto mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-light text-gray-600">
+
+        <div class="max-w-7xl mx-auto mt-12 pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-light text-gray-400">
             <div>&copy; 2026 Keralogic. All rights reserved.</div>
-            <div class="flex gap-4 text-xl">
-                <!-- Social placeholders -->
-                <a href="#" class="hover:text-blue-400 transition"><i class="fa-brands fa-twitter"></i></a>
-                <a href="#" class="hover:text-blue-600 transition"><i class="fa-brands fa-linkedin"></i></a>
-                <a href="#" class="hover:text-pink-500 transition"><i class="fa-brands fa-instagram"></i></a>
+            <div class="flex gap-4 text-lg">
+                <a href="#" class="text-gray-300 hover:text-brand-blue transition"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#" class="text-gray-300 hover:text-brand-plum transition"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#" class="text-gray-300 hover:text-brand-salmon transition"><i class="fa-brands fa-instagram"></i></a>
             </div>
         </div>
     </footer>
 
-    <!-- Initialize AOS Animation -->
     <script>
-        AOS.init({
-            once: true,
-            offset: 50,
-            easing: 'ease-out-cubic'
-        });
+        AOS.init({ once: true, offset: 50, easing: 'ease-out-cubic' });
 
-        // Navbar scroll effect
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
             if (window.scrollY > 20) {
-                nav.classList.add('shadow-lg', 'bg-black/80');
-                nav.classList.remove('py-4');
-                nav.classList.add('py-3');
+                nav.classList.add('shadow-md');
+                nav.style.background = 'rgba(255,255,255,0.95)';
             } else {
-                nav.classList.remove('shadow-lg', 'bg-black/80');
-                nav.classList.remove('py-3');
-                nav.classList.add('py-4');
+                nav.classList.remove('shadow-md');
+                nav.style.background = 'rgba(250,250,250,0.85)';
             }
         });
     </script>
