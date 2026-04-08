@@ -188,30 +188,87 @@
             </a>
         </div>
 
-        <!-- Hero Visual: Camera Feed Mockup -->
-        <div data-aos="zoom-in-up" data-aos-duration="1200" data-aos-delay="500" class="relative z-10 mt-20 w-full max-w-4xl mx-auto group">
+        <!-- Hero Visual: App Preview Mockup -->
+        <div data-aos="zoom-in-up" data-aos-duration="1200" data-aos-delay="500" class="relative z-10 mt-20 w-full max-w-5xl mx-auto group">
             <div class="absolute -inset-1 brand-gradient-bg rounded-[2.5rem] blur-lg opacity-20 group-hover:opacity-35 transition duration-700"></div>
 
-            <div class="relative w-full aspect-[16/9] md:aspect-[21/9] bg-white rounded-3xl overflow-hidden border border-gray-200 shadow-2xl flex items-center justify-center">
+            <div class="relative w-full aspect-[16/9] md:aspect-[2/1] bg-white rounded-3xl overflow-hidden border border-gray-200 shadow-2xl">
                 <div class="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-50"></div>
-                <div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(circle, #000 1px, transparent 1px); background-size: 24px 24px;"></div>
 
-                <div class="relative z-10 flex flex-col items-center justify-center">
-                    <div class="w-28 h-28 rounded-full flex items-center justify-center relative">
-                        <div class="absolute inset-0 rounded-full brand-gradient-bg opacity-10"></div>
-                        <div class="absolute inset-2 rounded-full bg-white"></div>
-                        <div class="absolute inset-4 rounded-full border-2 border-brand-plum/20"></div>
-                        <div class="w-10 h-10 rounded-full brand-gradient-bg shadow-lg relative z-10"></div>
-                        <div class="absolute -top-2 -right-6 flex items-center gap-1.5 bg-red-50 text-red-500 px-3 py-1 rounded-full border border-red-200 text-xs font-bold">
-                            <div class="w-2 h-2 bg-red-500 rounded-full animate-pulse-slow"></div>
-                            LIVE
+                <!-- Simulated camera feed UI -->
+                <div class="relative z-10 h-full flex items-stretch">
+                    <!-- Left: Camera feed area -->
+                    <div class="flex-1 relative m-4 md:m-6 rounded-2xl overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+                        <!-- Fake room scene with gradient overlay -->
+                        <div class="absolute inset-0 opacity-30" style="background-image: radial-gradient(ellipse at 50% 40%, rgba(255,198,90,0.3) 0%, transparent 60%), radial-gradient(ellipse at 30% 70%, rgba(200,108,255,0.15) 0%, transparent 50%);"></div>
+
+                        <!-- Camera overlay UI elements -->
+                        <div class="absolute top-3 left-3 md:top-4 md:left-4 flex items-center gap-2">
+                            <div class="flex items-center gap-1.5 bg-red-500/90 text-white px-2.5 py-1 rounded-full text-[10px] md:text-xs font-bold backdrop-blur-sm">
+                                <div class="w-1.5 h-1.5 bg-white rounded-full animate-pulse-slow"></div>
+                                LIVE
+                            </div>
+                            <div class="bg-black/40 text-white/80 px-2.5 py-1 rounded-full text-[10px] md:text-xs font-medium backdrop-blur-sm">
+                                <i class="fa-solid fa-shield-halved mr-1 text-green-400"></i> Encrypted
+                            </div>
                         </div>
-                        <div class="absolute -inset-2 rounded-full border-t-2 border-r-2 border-brand-purple/30 animate-spin-slow"></div>
+
+                        <div class="absolute top-3 right-3 md:top-4 md:right-4 flex items-center gap-2">
+                            <div class="bg-black/40 text-white/70 px-2 py-1 rounded-full text-[10px] md:text-xs backdrop-blur-sm">HD</div>
+                        </div>
+
+                        <!-- Center camera icon -->
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center border border-white/20">
+                                <i class="fa-solid fa-baby text-white/60 text-2xl md:text-3xl"></i>
+                            </div>
+                        </div>
+
+                        <!-- Bottom bar -->
+                        <div class="absolute bottom-0 left-0 right-0 p-3 md:p-4 bg-gradient-to-t from-black/60 to-transparent">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-white text-xs md:text-sm font-semibold">Nursery Camera</p>
+                                    <p class="text-white/50 text-[10px] md:text-xs">Connected &middot; 0.2s latency</p>
+                                </div>
+                                <div class="flex items-center gap-2 md:gap-3">
+                                    <div class="w-7 h-7 md:w-8 md:h-8 rounded-full bg-white/15 flex items-center justify-center backdrop-blur-sm"><i class="fa-solid fa-microphone text-white/70 text-xs"></i></div>
+                                    <div class="w-7 h-7 md:w-8 md:h-8 rounded-full bg-white/15 flex items-center justify-center backdrop-blur-sm"><i class="fa-solid fa-volume-high text-white/70 text-xs"></i></div>
+                                    <div class="w-7 h-7 md:w-8 md:h-8 rounded-full bg-white/15 flex items-center justify-center backdrop-blur-sm"><i class="fa-solid fa-expand text-white/70 text-xs"></i></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="mt-6 text-gray-400 font-medium tracking-widest text-xs uppercase flex items-center gap-3">
-                        <span class="w-8 h-[1px] bg-gray-200"></span>
-                        Always Private
-                        <span class="w-8 h-[1px] bg-gray-200"></span>
+
+                    <!-- Right: Info sidebar -->
+                    <div class="hidden md:flex flex-col justify-center w-64 pr-6 gap-5">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl brand-gradient-bg flex items-center justify-center shadow-md shrink-0">
+                                <i class="fa-solid fa-video text-white text-sm"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm font-semibold text-gray-800">Live Streaming</p>
+                                <p class="text-xs text-gray-400">Real-time video & audio</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-purple to-brand-blue flex items-center justify-center shadow-md shrink-0">
+                                <i class="fa-solid fa-comments text-white text-sm"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm font-semibold text-gray-800">Two-Way Audio</p>
+                                <p class="text-xs text-gray-400">Talk & listen instantly</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-gold to-brand-salmon flex items-center justify-center shadow-md shrink-0">
+                                <i class="fa-solid fa-lock text-white text-sm"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm font-semibold text-gray-800">Always Private</p>
+                                <p class="text-xs text-gray-400">Encrypted & secure</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
