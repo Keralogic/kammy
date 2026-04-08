@@ -19,9 +19,9 @@
                     colors: {
                         brand: {
                             gold: '#FFC65A',
-                            salmon: '#FF7EB3',
-                            purple: '#D946A8',
-                            plum: '#9B59B6',
+                            salmon: '#FF6C6C',
+                            purple: '#C86CFF',
+                            plum: '#C86CFF',
                             blue: '#7EC8E3',
                         }
                     },
@@ -50,28 +50,28 @@
         }
 
         .gradient-text-brand {
-            background: linear-gradient(90deg, #FFC65A, #FF7EB3, #D946A8, #9B59B6, #7EC8E3);
+            background: linear-gradient(90deg, #FFC65A, #FF6C6C, #C86CFF, #7EC8E3);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
         .gradient-text-warm {
-            background: linear-gradient(135deg, #FFC65A, #FF7EB3);
+            background: linear-gradient(135deg, #FFC65A, #FF6C6C);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
         .gradient-text-cool {
-            background: linear-gradient(135deg, #9B59B6, #7EC8E3);
+            background: linear-gradient(135deg, #C86CFF, #7EC8E3);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
         .brand-gradient-bg {
-            background: linear-gradient(135deg, #FFC65A, #FF7EB3, #D946A8, #9B59B6, #7EC8E3);
+            background: linear-gradient(135deg, #FFC65A, #FF6C6C, #C86CFF, #7EC8E3);
         }
 
         .blob-gold {
@@ -91,7 +91,7 @@
         }
         .blob-blue {
             position: absolute; width: 500px; height: 500px;
-            background: radial-gradient(circle, rgba(0,119,182,0.08) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(126,200,227,0.08) 0%, transparent 70%);
             border-radius: 50%; pointer-events: none; z-index: 0;
         }
 
@@ -119,7 +119,7 @@
             100% { background-position: 0% 50%; }
         }
         .animated-gradient-line {
-            background: linear-gradient(90deg, #FFC65A, #FF7EB3, #D946A8, #9B59B6, #7EC8E3, #FFC65A);
+            background: linear-gradient(90deg, #FFC65A, #FF6C6C, #C86CFF, #7EC8E3, #FFC65A);
             background-size: 200% 100%;
             animation: gradient-shift 4s ease infinite;
         }
@@ -132,7 +132,7 @@
     <nav class="fixed w-full z-50 nav-light transition-all duration-300" id="navbar">
         <div class="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
             <a href="#" class="flex items-center hover:opacity-80 transition">
-                <img src="full_logo.svg" alt="Kammy" class="h-16">
+                <img src="full_logo.svg" alt="Kammy" class="h-12">
             </a>
 
             <div class="hidden md:flex gap-10 text-sm font-medium text-gray-500">
